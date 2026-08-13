@@ -1,135 +1,313 @@
-# 💸 Aplikasi Pencatatan Pengeluaran Rumah Tangga (Household Expense Tracker)
+# 💸 Household Expense Tracker (Aplikasi Pencatatan Pengeluaran Rumah Tangga)
 
-Aplikasi Web Modern untuk mencatat, mengelompokkan, dan menganalisis pengeluaran bulanan rumah tangga secara mendalam. Dibangun menggunakan **Python FastAPI** di sisi Backend dan **ReactJS (Vite)** di sisi Frontend, lengkap dengan visualisasi grafik interaktif dan fitur ekspor laporan.
+[![GitHub Repository](https://img.shields.io/badge/GitHub-sonnyariady%2Fvibe--expense--tracker-blue?logo=github)](https://github.com/sonnyariady/vibe-expense-tracker)
+[![Backend](https://img.shields.io/badge/Backend-Python%20FastAPI%20%7C%20SQLite-009688?logo=fastapi)](file:///c:/Latihan/Fullstack/PengeluaranBulanan/backend)
+[![Frontend](https://img.shields.io/badge/Frontend-React%20%7C%20Vite-61DAFB?logo=react)](file:///c:/Latihan/Fullstack/PengeluaranBulanan/frontend)
+
+A modern full-stack web application designed for tracking, categorizing, analyzing monthly household expenses, and setting budget targets. Features interactive charts, real-time filtering, CSV exporting, and dual data storage mode (FastAPI + SQLite with offline LocalStorage fallback).
 
 ---
+
+## 🌐 Table of Contents / Daftar Isi
+- [🇮🇩 Bahasa Indonesia](#-bahasa-indonesia)
+  - [Fitur Utama](#-fitur-utama)
+  - [📖 User Manual / Petunjuk Penggunaan](#-user-manual--petunjuk-penggunaan)
+  - [🛠 Tech Stack & Arsitektur](#-tech-stack--arsitektur)
+  - [🚀 Cara Menjalankan Aplikasi (Lokal)](#-cara-menjalankan-aplikasi-lokal)
+  - [🌐 Opsi Deployment Gratis](#-opsi-deployment-gratis)
+- [🇬🇧 English Version](#-english-version)
+  - [Key Features](#-key-features)
+  - [📖 User Manual](#-user-manual)
+  - [🛠 Tech Stack & Architecture](#-tech-stack--architecture)
+  - [🚀 Quick Start Guide (Local)](#-quick-start-guide-local)
+  - [🌐 Free Deployment Options](#-free-deployment-options)
+- [📁 Directory Structure](#-directory-structure)
+
+---
+
+# 🇮🇩 Bahasa Indonesia
 
 ## ✨ Fitur Utama
 1. **Pencatatan Transaksi Lengkap**:
-   - Tanggal Pengeluaran
-   - Nama Transaksi & Catatan
-   - Nominal (Format IDR Rupiah)
-   - Kategori (Makanan & Bahan Pokok, Tagihan, Transportasi, Hiburan, Top Up, Kesehatan, dll)
-   - Tipe Pengeluaran (**Belanja**, **Tagihan**, **Jajan**, **Ongkos**, **Topup**, **Lainnya**)
+   - Tanggal pengeluaran, nama transaksi, nominal (format IDR Rupiah).
+   - **Kategori**: Makanan & Bahan Pokok, Tagihan & Utilitas, Transportasi, Hiburan, Top Up, Kesehatan, Perlengkapan, Pendidikan, dll.
+   - **Tipe Pengeluaran**: Belanja, Tagihan, Jajan, Ongkos, Topup, Lainnya.
+   - Catatan tambahan opsional.
 2. **Dashboard Analytics & KPI Cards**:
-   - Total Pengeluaran Bulan Ini
-   - Batas Anggaran Bulanan & Sisa Anggaran (Progress Bar)
-   - Estimasi Rata-rata Pengeluaran Harian
-   - Jumlah Transaksi
-3. **Visualisasi Data (Recharts)**:
-   - **Donut Chart**: Distribusi Pengeluaran berdasarkan Kategori.
-   - **Bar Chart**: Distribusi Pengeluaran berdasarkan Tipe (Belanja vs Tagihan vs Jajan vs Ongkos vs Topup).
-4. **Filter & Pencarian**:
-   - Filter Bulan & Tahun
-   - Filter Kategori & Tipe Pengeluaran
-   - Real-time Search Keyword
-5. **Ekspor Data**: Download data laporan transaksi dalam format `.CSV` / Excel.
-6. **Dual Mode Storage**: Terhubung ke FastAPI + SQLite Database, serta fallback ke **LocalStorage Browser** jika dijalankan tanpa backend server (cocok untuk Demo Statis Free).
+   - **Total Pengeluaran Bulan Ini** dalam Rupiah.
+   - **Batas Anggaran Bulanan & Sisa Anggaran**: dilengkapi dengan progress bar warna otomatis (*Green*, *Yellow*, *Red Alert* jika melebihi budget).
+   - **Estimasi Rata-rata Harian**: menghitung pengeluaran rata-rata per hari.
+   - **Total Transaksi**: statistik jumlah transaksi yang tercatat.
+3. **Visualisasi Data Interaktif (Recharts)**:
+   - **Donut Chart**: Distribusi persentase pengeluaran berdasarkan Kategori.
+   - **Bar Chart**: Perbandingan pengeluaran berdasarkan Tipe (Belanja vs Tagihan vs Jajan vs Ongkos vs Topup).
+4. **Filter & Pencarian Pintar**:
+   - Selector Bulan & Tahun.
+   - Filter Kategori & Tipe Pengeluaran.
+   - Pencarian *Real-time Keyword*.
+5. **Ekspor Data**: Fitur unduh laporan transaksi dalam format `.CSV` yang kompatibel dengan Microsoft Excel / Google Sheets.
+6. **Dual-Mode Storage**:
+   - **FastAPI + SQLite**: Penyimpanan database lokal persisten.
+   - **LocalStorage Fallback**: Otomatis beralih ke penyimpanan browser jika backend tidak aktif (cocok untuk Demo Statis).
 
 ---
 
-## 🛠 Tech Stack
-- **Backend**: Python 3.10+ | FastAPI | SQLite | SQLAlchemy | Pydantic v2 | Uvicorn
-- **Frontend**: React 18 | Vite | Recharts | Lucide React | Modern Custom CSS Glassmorphism
+## 📖 User Manual / Petunjuk Penggunaan
+
+### 1. Navigasi Header & Periode
+* **Pilih Bulan & Tahun**: Gunakan dropdown bulan dan tahun di baris atas header untuk berpindah periode laporan bulanan.
+* **Status Mode**: Indikator di bawah header menampilkan apakah aplikasi terhubung ke **Python FastAPI Server (SQLite)** atau berjalan di **Demo Mode (LocalStorage Browser)**.
+
+### 2. Membaca Dashboard & KPI Cards
+* **Total Pengeluaran**: Menampilkan total uang yang telah dikeluarkan pada bulan & tahun yang dipilih.
+* **Batas Anggaran (Budget)**: 
+  * Menampilkan alokasi anggaran bulanan (default Rp 5.000.000).
+  * Indikator warna: **Hijau** (penggunaan aman < 75%), **Kuning** (peringatan 75% - 100%), **Merah** (melebihi batas anggaran > 100%).
+* **Rata-rata Harian**: Menunjukkan estimasi pengeluaran per hari pada bulan berjalan.
+* **Jumlah Transaksi**: Menampilkan kuantitas transaksi yang sudah dicatat.
+
+### 3. Menambah Catatan Pengeluaran Baru
+1. Klik tombol hijau **`+ Tambah Pengeluaran`** di kanan atas.
+2. Isi formulir modal:
+   * **Nama Transaksi** (contoh: *Beli Beras & Minyak Goreng*).
+   * **Nominal (Rp)** (contoh: *150000*).
+   * **Tanggal** (default: hari ini).
+   * **Kategori** (pilih kategori yang paling sesuai).
+   * **Tipe Pengeluaran** (pilih *Belanja*, *Tagihan*, *Jajan*, *Ongkos*, *Topup*, atau *Lainnya*).
+   * **Catatan** *(Opsional)*.
+3. Klik tombol **`Simpan Transaksi`**. Data akan langsung diperbarui di tabel & grafik.
+
+### 4. Mengubah & Menghapus Transaksi
+* **Mengedit Transaksi**: Pada tabel daftar transaksi, klik ikon **Edit (Pensil)** di kolom Aksi pada baris transaksi yang ingin diubah. Ubah data lalu klik **`Simpan Perubahan`**.
+* **Menghapus Transaksi**: Klik ikon **Hapus (Tong Sampah)** di kolom Aksi. Konfirmasi penghapusan saat dialog muncul.
+
+### 5. Menggunakan Filter & Pencarian
+* **Pencarian Kata Kunci**: Ketik nama transaksi atau catatan di kolom pencarian *"Cari transaksi..."*.
+* **Filter Kategori**: Filter transaksi berdasarkan kategori spesifik (contoh: *Makanan & Bahan Pokok*).
+* **Filter Tipe**: Filter transaksi berdasarkan tipe pengeluaran (contoh: *Jajan* atau *Tagihan*).
+
+### 6. Mengekspor Laporan ke CSV (Excel)
+1. Pilih periode Bulan dan Tahun yang ingin diekspor.
+2. Klik tombol **`Export CSV`** di bagian header.
+3. File `.csv` (contoh: `Laporan_Pengeluaran_8_2026.csv`) akan otomatis diunduh ke komputer Anda.
 
 ---
 
-## 🚀 Cara Menjalankan Aplikasi Secara Lokal
+## 🛠 Tech Stack & Arsitektur
 
-### 1. Menjalankan Backend (Python FastAPI)
+### Backend
+* **Python 3.10+**
+* **FastAPI**: Framework REST API performa tinggi.
+* **SQLite**: Database terintegrasi (*file-based*).
+* **SQLAlchemy**: Object-Relational Mapping (ORM).
+* **Pydantic v2**: Validasi data input & output schema.
 
-Buka terminal di folder root project `PengeluaranBulanan`:
+### Frontend
+* **React 18 & Vite**: Fast HMR & build modern toolchain.
+* **Recharts**: Responsive chart visualization library.
+* **Lucide React**: Vector icons UI set.
+* **Custom CSS Glassmorphism**: Modern dark/light glass design system.
 
+---
+
+## 🚀 Cara Menjalankan Aplikasi (Lokal)
+
+### Prerequisites
+* **Python 3.10+** terinstall
+* **Node.js 18+** & **npm** terinstall
+
+### Langkah 1: Menjalankan Backend (FastAPI)
 ```bash
-# Enter folder backend
+# Pindah ke directory backend
 cd backend
 
 # Aktifkan Virtual Environment (Windows)
 .\venv\Scripts\activate
 
-# Install dependensi (jika belum)
+# Install dependencies Python
 pip install -r requirements.txt
 
-# Jalankan server FastAPI
+# Menjalankan server FastAPI
 uvicorn main:app --reload --port 8000
 ```
-
-Server backend akan berjalan di: **`http://127.0.0.1:8000`**  
-Dokumentasi OpenAPI / Swagger UI otomatis dapat diakses di: **`http://127.0.0.1:8000/docs`**
+Backend berjalan di: **`http://127.0.0.1:8000`**  
+Dokumentasi Interactive API (Swagger UI): **`http://127.0.0.1:8000/docs`**
 
 ---
 
-### 2. Menjalankan Frontend (ReactJS Vite)
-
-Buka terminal kedua di folder root project `PengeluaranBulanan`:
-
+### Langkah 2: Menjalankan Frontend (React Vite)
+Buka terminal baru di root folder:
 ```bash
-# Enter folder frontend
+# Pindah ke directory frontend
 cd frontend
 
-# Install dependensi npm
+# Install dependencies node_modules
 npm install
 
-# Jalankan server dev React
+# Menjalankan React Dev Server
 npm run dev
 ```
-
-Frontend akan berjalan di: **`http://localhost:3000`** (atau URL yang ditampilkan di terminal). Buka browser dan aplikasi siap digunakan!
-
----
-
-## 💡 Ide & Cara Simpan Data untuk Demo Free & Publikasi (Deploy Gratis)
-
-Berikut beberapa strategi untuk mempublikasikan aplikasi ini ke internet secara **100% GRATIS**:
-
-### 🔹 Opsi 1: SQLite + Render.com + Vercel (Paling Direkomendasikan)
-1. **Backend (Render.com)**:
-   - Buat akun gratis di [Render.com](https://render.com).
-   - Buat **New Web Service**, hubungkan repository Git berisi folder `backend`.
-   - Set Build Command: `pip install -r requirements.txt`
-   - Set Start Command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
-   - Data SQLite otomatis tersimpan di file `pengeluaran.db`.
-2. **Frontend (Vercel)**:
-   - Buat akun gratis di [Vercel.com](https://vercel.com).
-   - Import repository Git berisi folder `frontend`.
-   - Vercel akan otomatis mendeteksi Vite React dan melakukan build secara instan.
+Frontend berjalan di: **`http://localhost:3000`**
 
 ---
 
-### 🔹 Opsi 2: Supabase / Neon (Cloud PostgreSQL Free Tier)
-Jika ingin data tersimpan di Cloud Database yang lebih tangguh:
-1. Buat database PostgreSQL gratis di **[Supabase.com](https://supabase.com)** atau **[Neon.tech](https://neon.tech)**.
-2. Di file `backend/database.py`, ganti `SQLALCHEMY_DATABASE_URL` dengan Connection String dari Supabase (misal: `postgresql://user:password@ep-xyz.neon.tech/dbname`).
-3. Push backend ke Render / Railway / Koyeb (Free Tier).
+## 🌐 Opsi Deployment Gratis
+
+1. **Backend (Render.com)**: Deploy folder `backend` sebagai **Web Service** gratis di Render.
+2. **Frontend (Vercel / Netlify)**: Deploy folder `frontend` secara gratis di Vercel atau Netlify.
+3. **Demo Mode (GitHub Pages)**: Karena dilengkapi dengan *LocalStorage Fallback*, frontend bisa langsung dideploy statis di GitHub Pages tanpa backend server active!
 
 ---
 
-### 🔹 Opsi 3: Demo Offline / Static Mode (Tanpa Backend Server)
-- Aplikasi frontend React yang dibuat sudah dilengkapi dengan **Automatic Fallback Mode**.
-- Jika Backend FastAPI tidak menyala atau di-deploy secara terpisah di **GitHub Pages / Vercel**, aplikasi akan beralih secara otomatis menggunakan **LocalStorage Browser**.
-- Calon user/penguji demo dapat mencoba tambah, edit, hapus, filter, dan melihat grafik pengeluaran 100% langsung dari browser tanpa perlu menyalakan server backend!
+<br/>
 
 ---
 
-## 📁 Struktur Direktori Project
+# 🇬🇧 English Version
+
+## ✨ Key Features
+1. **Comprehensive Expense Tracking**:
+   - Transaction date, title, amount in IDR currency.
+   - **Categories**: Groceries & Food, Utilities & Bills, Transportation, Entertainment, Top Up, Healthcare, Supplies, Education, etc.
+   - **Expense Types**: Shopping, Bills, Snacks, Transit, Top Up, Others.
+   - Optional detailed notes.
+2. **Analytics Dashboard & KPI Cards**:
+   - **Total Monthly Expense** in Rupiah.
+   - **Monthly Budget & Remaining Limit**: Progress bar with dynamic color indicators (*Green*, *Yellow*, *Red Alert* when exceeding budget).
+   - **Daily Expense Average**: Calculated daily spending rate for the current month.
+   - **Total Transactions**: Total headcount of recorded items.
+3. **Interactive Data Visualization (Recharts)**:
+   - **Donut Chart**: Category expense distribution.
+   - **Bar Chart**: Breakdown by Expense Types (Shopping vs Bills vs Snacks vs Transit vs Topup).
+4. **Smart Search & Filter**:
+   - Month & Year picker.
+   - Category & Type filter dropdowns.
+   - Real-time keyword search.
+5. **Data Export**: Export monthly transactions report directly into `.CSV` format (compatible with MS Excel / Google Sheets).
+6. **Dual Storage Architecture**:
+   - **FastAPI + SQLite**: Persistent local backend storage.
+   - **LocalStorage Fallback**: Automatic failover to client-side storage when backend server is offline.
+
+---
+
+## 📖 User Manual
+
+### 1. Header Navigation & Period Selection
+* **Select Month & Year**: Use the Month and Year dropdown selectors in the top header bar to switch between reporting periods.
+* **Storage Status Banner**: Displays whether the app is currently connected to **Python FastAPI (SQLite)** or running in **Demo Mode (LocalStorage Browser)**.
+
+### 2. Dashboard KPIs & Budget Tracker
+* **Total Expenses**: Displays the total accumulated spending for the selected period.
+* **Monthly Budget Target**:
+  * Default budget set to Rp 5,000,000.
+  * Color indicators: **Green** (< 75% budget used), **Yellow** (75% - 100%), **Red** (> 100% budget overspent).
+* **Daily Average**: Estimated average spending per day for the selected month.
+* **Total Count**: Number of logged transactions.
+
+### 3. Adding a New Expense Entry
+1. Click the green **`+ Tambah Pengeluaran`** button in the top right.
+2. Fill out the entry modal form:
+   * **Title** (e.g., *Monthly Groceries & Milk*).
+   * **Amount (Rp)** (e.g., *150000*).
+   * **Date** (defaults to today's date).
+   * **Category** (select from standard category list).
+   * **Expense Type** (*Belanja / Tagihan / Jajan / Ongkos / Topup / Lainnya*).
+   * **Notes** *(Optional)*.
+3. Click **`Simpan Transaksi`**. The dashboard, charts, and table update instantaneously.
+
+### 4. Editing & Deleting Expenses
+* **Edit Expense**: In the transaction list table, click the **Pencil icon** on the row you wish to modify. Make your changes and click **`Simpan Perubahan`**.
+* **Delete Expense**: Click the **Trash Can icon** on the transaction row and confirm deletion in the popup dialog.
+
+### 5. Filtering & Search
+* **Search Input**: Type any keyword in the search bar to filter transactions by title or notes.
+* **Category Filter**: Filter transactions by specific category.
+* **Type Filter**: Filter transactions by spending type.
+
+### 6. Exporting Reports to CSV
+1. Select the desired Month and Year.
+2. Click **`Export CSV`** in the header.
+3. A formatted `.csv` file (e.g., `Laporan_Pengeluaran_8_2026.csv`) will automatically download to your computer.
+
+---
+
+## 🛠 Tech Stack & Architecture
+
+### Backend
+* **Python 3.10+**
+* **FastAPI**
+* **SQLite Database**
+* **SQLAlchemy ORM**
+* **Pydantic v2**
+
+### Frontend
+* **React 18 & Vite**
+* **Recharts Visualization Library**
+* **Lucide React UI Icons**
+* **Custom CSS Glassmorphism Design System**
+
+---
+
+## 🚀 Quick Start Guide (Local)
+
+### Prerequisites
+* **Python 3.10+**
+* **Node.js 18+** & **npm**
+
+### Step 1: Run Backend (FastAPI)
+```bash
+cd backend
+.\venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn main:app --reload --port 8000
+```
+Backend API will run at: **`http://127.0.0.1:8000`**  
+OpenAPI / Swagger documentation: **`http://127.0.0.1:8000/docs`**
+
+---
+
+### Step 2: Run Frontend (React Vite)
+In a separate terminal:
+```bash
+cd frontend
+npm install
+npm run dev
+```
+Frontend Web App will run at: **`http://localhost:3000`**
+
+---
+
+## 🌐 Free Deployment Options
+
+1. **Backend**: Host the `backend` folder on [Render.com](https://render.com) (Free Web Service).
+2. **Frontend**: Host the `frontend` folder on [Vercel](https://vercel.com) or [Netlify](https://netlify.com).
+3. **Static Demo**: Host on [GitHub Pages](https://pages.github.com) using the client-side LocalStorage mode.
+
+---
+
+## 📁 Directory Structure
+
 ```text
 PengeluaranBulanan/
 ├── backend/
-│   ├── database.py       # Konfigurasi SQLite & SQLAlchemy session
-│   ├── main.py           # Endpoint REST API FastAPI & seed data
-│   ├── models.py         # Schema tabel database Expense
-│   ├── schemas.py        # Pydantic data validation schemas
-│   ├── requirements.txt  # Package dependensi Python
-│   └── pengeluaran.db    # Database SQLite lokal (dibuat otomatis)
+│   ├── database.py       # SQLite connection & SQLAlchemy session
+│   ├── main.py           # FastAPI REST endpoints & seed data
+│   ├── models.py         # Expense database table model
+│   ├── schemas.py        # Pydantic validation schemas
+│   ├── requirements.txt  # Python packages
+│   └── pengeluaran.db    # SQLite local DB file
 ├── frontend/
 │   ├── public/
 │   ├── src/
 │   │   ├── components/   # Header, StatCard, ExpenseCharts, ExpenseTable, ExpenseFormModal
-│   │   ├── api.js        # Service layer API & LocalStorage Fallback
-│   │   ├── App.jsx       # Main App Component
-│   │   ├── index.css     # Design system & Styling UI
+│   │   ├── api.js        # API service layer with LocalStorage fallback
+│   │   ├── App.jsx       # Main App component
+│   │   ├── index.css     # Glassmorphism styling system
 │   │   └── main.jsx
 │   ├── package.json
 │   └── vite.config.js
-└── README.md
+└── README.md             # Project documentation & user manual
 ```
+
+---
+*Developed with ❤️ using Python FastAPI & ReactJS (Vite).*
