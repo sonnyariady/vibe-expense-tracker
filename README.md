@@ -54,6 +54,11 @@ A modern full-stack web application designed for tracking, categorizing, analyzi
 
 ## 📖 User Manual / Petunjuk Penggunaan
 
+> 📄 **Download User Manual PDF & Documentation:**
+> - 🇮🇩 **Bahasa Indonesia:** [USER_MANUAL_ID.pdf](USER_MANUAL_ID.pdf) (File PDF Lengkap) | [USER_MANUAL_ID.md](USER_MANUAL_ID.md) (Dokumen Markdown)
+> - 🇬🇧 **English Version:** [USER_MANUAL_EN.pdf](USER_MANUAL_EN.pdf) (Full PDF File) | [USER_MANUAL_EN.md](USER_MANUAL_EN.md) (Markdown Document)
+> - 📸 **Screenshots Directory:** [docs/screenshots/](docs/screenshots)
+
 ### 1. Navigasi Header & Periode
 * **Pilih Bulan & Tahun**: Gunakan dropdown bulan dan tahun di baris atas header untuk berpindah periode laporan bulanan.
 * **Status Mode**: Indikator di bawah header menampilkan apakah aplikasi terhubung ke **Python FastAPI Server (SQLite)** atau berjalan di **Demo Mode (LocalStorage Browser)**.
